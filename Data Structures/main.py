@@ -21,6 +21,7 @@ class LinkedList:
 
     def remove(self,data):
         if self.head is None:
+            print("List is empty, nothing to remove")
             return # there' nothing to return
         
         if self.head.data == data:
@@ -33,9 +34,14 @@ class LinkedList:
                 current.next = current.next.next #In other words, we are making the current node point directly to the node after the one we’re removing, effectively "cutting out" the node that matched the data.
                 return
             current = current.next #If the next node does not contain the data we’re looking for, we move on to the next node by setting current = current.next.
+        print(f"Node with data {data} is not found")
 
     def traverse(self):
         current = self.head
-        while current is not None:
-            print(current.data)
-            current = current.next # move on to the next node
+        if current is None:
+            print("List is empty!")
+        else:
+            while current is not None:
+                print(current.data)
+                current = current.next # move on to the next node
+            print("None") # To indicate end of the list
