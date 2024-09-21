@@ -11,8 +11,7 @@ class Stack:
     """Remove and return the top item of the stack"""
     if not self.isEmpty():
       removed_item = self.stack.pop()
-      print(f"Popped {removed_item} from the stack")
-      return removed_item
+      print(f"Popped {removed_item} from the stack") # generally we use 'return' to get the immediate feedback in pop and peek, as a beginner we use print for readability friendliness
     else:
       print("Stack is empty, cannot pop")
       return None
@@ -22,7 +21,6 @@ class Stack:
     if not self.isEmpty():
       top_item = self.stack[-1]
       print(f"Top item is {top_item}")
-      return top_item
     else:
       print("Stack is empty, nothing to peek")
       return None
@@ -43,5 +41,3 @@ class Stack:
       print("(Stack from top to bottom):")
       for item in reversed(self.stack):
         print(item)
-        
-        
