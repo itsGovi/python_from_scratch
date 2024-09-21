@@ -11,7 +11,7 @@ class Stack:
     """Remove and return the top item of the stack"""
     if not self.isEmpty():
       removed_item = self.stack.pop()
-      print(f"Removed {removed_item} from the stack")
+      print(f"Popped {removed_item} from the stack")
       return removed_item
     else:
       print("Stack is empty, cannot pop")
@@ -40,7 +40,7 @@ class Stack:
     if self.isEmpty():
       print("Stack is empty!")
     else:
-      print("Stack from top to bottom:")
+      print("(Stack from top to bottom):")
       for item in reversed(self.stack):
         print(item)
         
