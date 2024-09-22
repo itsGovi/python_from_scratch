@@ -4,7 +4,7 @@ class Queue: # This DS follows FIFO (First in, First Out)
     
   def enqueue(self, item):
     """Adding an item to the Queue"""
-    self.queue = self.queue.append(item)
+    self.queue.append(item)
     print(f"{item} has been added to the queue!")
     
   def dequeue(self):

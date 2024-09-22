@@ -1,4 +1,4 @@
-from Linked_list import LinkedList
+from LinkedList import LinkedList
 
 if __name__ == "__main__":
     
