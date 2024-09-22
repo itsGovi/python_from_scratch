@@ -1,4 +1,4 @@
-from Queue import Queue  # Make sure to change 'queue' to 'my_queue' if you renamed the file
+from my_queue import Queue
 
 if __name__ == "__main__":
     my_queue = Queue()
