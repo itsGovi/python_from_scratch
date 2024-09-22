@@ -35,6 +35,6 @@ class Queue: # This DS follows FIFO (First in, First Out)
     if self.isEmpty():
       print("The queue has none items to display! Add and then run the code again!")
     else:
-      print("Queue from front to back:")
+      print("(Queue from front to back):")
       for item in self.queue:
         print(item)
