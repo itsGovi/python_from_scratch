@@ -1,4 +1,4 @@
-class Stack:
+class Stack: # This DS follows LIFO (Last in, First Out)
   def __init__(self):
     self.stack = [] # Initialize an empty list to hold stack items
     
@@ -10,7 +10,7 @@ class Stack:
   def pop(self):
     """Remove and return the top item of the stack"""
     if not self.isEmpty():
-      removed_item = self.stack.pop()
+      removed_item = self.stack.pop() # pop() method ->  If no index is provided, it defaults to removing the last element (index -1).
       print(f"Popped {removed_item} from the stack") # generally we use 'return' to get the immediate feedback in pop and peek, as a beginner we use print for readability friendliness
     else:
       print("Stack is empty, cannot pop")
