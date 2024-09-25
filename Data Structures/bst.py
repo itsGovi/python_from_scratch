@@ -2,7 +2,7 @@
 so that its explicit interpretation requires in general many successive executions."""
 
 class Node:
-  def __init__(self):
+  def __init__(self,key):
     self.right = None # right child
     self.left = None  # left child
     self.value = key  # Node's value
@@ -23,7 +23,7 @@ class BinarySearchTree:
       if current_node.left is None:
         current_node.left = Node(key)
       else:
-        self._insert(self.current_node.left, key)
+        self._insert(current_node.left, key)
         #calling its own function for searching the lowest position to place it!
     elif key > current_node.value:
       if current_node.right is None:
