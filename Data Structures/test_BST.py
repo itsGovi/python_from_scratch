@@ -1,13 +1,10 @@
-from bst import BinarySearchTree
-import random
-
-
+from bst import BinarySearchTree  # Import the BinarySearchTree class
 
 if __name__ == "__main__":
-    # Creating a instance of bst
+    # Create an instance of BinarySearchTree
     bst = BinarySearchTree()
 
-    # Inserting values into the bst with random
+    # Insert values into the binary search tree
     bst.insert(50)
     bst.insert(30)
     bst.insert(70)
@@ -15,25 +12,22 @@ if __name__ == "__main__":
     bst.insert(40)
     bst.insert(60)
     bst.insert(80)
-    bst.insert(10)
-    bst.insert(90)
 
+    # Traverse the tree in-order (should print values in sorted order)
+    print("\nIn-order Traversal of the BST:")
+    bst.inorder_traverse()  # Expected output: 20 30 40 50 60 70 80
 
-    # Traverse the tree in-order (print values in asc -> dsc)
-    print("\nIn-order Traversal of BST:")
-    bst.inorder_traverse()
+    # Search for a value in the BST
+    print("\n\nSearching for 40 in the BST:")
+    found = bst.search(40)
+    print(f"Found: {found}")  # Expected output: Found: True
 
-    #Searching for a value in BST
-    print("\n\nSearching for 99 in the BST")
-    found = bst.search(99)
-    print(f"Found: {found}")
+    print("\nSearching for 100 in the BST:")
+    found = bst.search(100)
+    print(f"Found: {found}")  # Expected output: Found: False
 
-    print("\nSearching for 999(not included) in BST:")
-    found = bst.search(999)
-    print(f"Found: {found}")
+    # Find the minimum value in the BST
+    print(f"\nMinimum value in the BST: {bst.min_value()}")  # Expected output: 20
 
-    # Finding the max value in the BST
-    print(f"/nMaximum value in the BST: {bst.max_value()}")
-
-    # Finding the min value in the BST
-    print(f"\nMinimum value in the BST: {bst.min_value()}")
+    # Find the maximum value in the BST
+    print(f"Maximum value in the BST: {bst.max_value()}")  # Expected output: 80
