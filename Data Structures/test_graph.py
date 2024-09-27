@@ -29,3 +29,14 @@ if __name__ == "__main__":
     # Perform DFS
     print("\n\nDFS Traversal starting from vertex A:")
     g.dfs("A")
+    
+""" 
+How the graph looks as drawing:
+   A
+  / \
+ B   C
+  \ / 
+   D
+    \
+     E
+"""
