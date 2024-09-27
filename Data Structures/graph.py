@@ -30,10 +30,19 @@ class Graph:
   def add_edge(self, vertex1, vertex2):
     """Add an undirected edge between vertex1 and vertex2"""
     if vertex1 in self.graph and vertex2 in self.graph:
-      self.graph[vertex1].append(vertex2)
-      self.graph[vertex2].append(vertex2)
-    else:
-      print("One or both vertices do not exist.")
+     # Ensuring no self-loop is added
+     if vertex1 == vertex2:
+       print("Cannot add a self-loop!")
+       return
+     
+     # Add edge only if it doesn't already exist
+     if vertex2 not in self.graph[vertex1]:
+       self.graph[vertex1].append(vertex2)
+       
+     if vertex1 not in self.graph[vertex2]:
+        self.graph[vertex2].append(vertex1)
+     else:
+       print("One or both vertices do not exist!")
       
   def display(self):
     """Display the graph"""
@@ -65,7 +74,7 @@ class Graph:
     """Helper Function"""
     if vertex not in visited:
       print(vertex, end=' ')
-      visited.append(vertex)
+      visited.add(vertex)
       
       # Recursively visit all the unvisited neighbors
       for neighbor in self.graph[vertex]:
