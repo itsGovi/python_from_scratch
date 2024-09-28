@@ -24,7 +24,7 @@ class Queue: # This DS follows FIFO (First in, First Out)
       print("There's nothing to peek as nothing is queued")
     
   def size(self):
-    """Getting the total values in the queue"""
+    """Getting the total values in the queue""" 
     return len(self.queue)
   
   def isEmpty(self):
