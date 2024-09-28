@@ -8,7 +8,7 @@ class LinkedList:
         self.head = None
 
     def add(self,data):
-        new_node = Node(data)
+        new_node = Node(data) #Assigning self.head to self.data would only copy the reference, not the actual data.
 
         if self.head is None: #checking if head node is not there -> marking it as no node yet added
             self.head = new_node
