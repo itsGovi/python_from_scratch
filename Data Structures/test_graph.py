@@ -5,11 +5,9 @@ if __name__ == "__main__":
     g = Graph()
 
     # Add vertices
-    g.add_vertex("A")
-    g.add_vertex("B")
-    g.add_vertex("C")
-    g.add_vertex("D")
-    g.add_vertex("E")
+    vertices = ["A", "B", "C", "D", "E"]
+    for vertex in vertices:
+        g.add_vertex(vertex)
 
     # Add edges (undirected)
     g.add_edge("A", "B")
