@@ -5,9 +5,11 @@ if __name__ == "__main__":
     g = Graph()
 
     # Add vertices
-    vertices = ["A", "B", "C", "D", "E"]
-    for vertex in vertices:
-        g.add_vertex(vertex)
+    g.add_vertex("A")
+    g.add_vertex("B")
+    g.add_vertex("C")
+    g.add_vertex("D")
+    g.add_vertex("E")
 
     # Add edges (undirected)
     g.add_edge("A", "B")
@@ -27,14 +29,3 @@ if __name__ == "__main__":
     # Perform DFS
     print("\n\nDFS Traversal starting from vertex A:")
     g.dfs("A")
-    
-""" 
-How the graph looks as drawing:
-   A
-  / \
- B   C
-  \ / 
-   D
-    \
-     E
-"""
