@@ -22,7 +22,7 @@ class FileTree:
                     current = child
                     found = True
                     break
-            if not foundd:
+            if not found:
                 return None
         return current
 
@@ -43,9 +43,9 @@ class FileTree:
                     del parent.children[i]
                     print(f"{'Directory' if child.is_directory else 'File'} '{name}' delete from path {'/'.join(path)}")
                     return
-            print("f{name} not found in path {'/'.join(path)}")
-            else:
-                print(f"Path {'/'.join(path)} does not exist")
+            print(f"{name} not found in path {'/'.join(path)}")
+        else:
+            print(f"Path {'/'.join(path)} does not exist")
 
     def search_file(self, name):
         """Search for a file or directory by name"""
