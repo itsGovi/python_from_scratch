@@ -11,15 +11,15 @@ class NavigationStack:
     """Pops the last path from the stack"""
     return self.stack.pop() if self.stack else None
   
-  class NavigationQueue:
-    """Handles 'FORWARD' navigation using queue (FIFO)"""
-    def __init__(self):
-      self.queue = []
-      
-    def enqueue(self, path):
-      """Enqueues the current path to the forward queue"""
-      self.queue.append(path)
-      
-    def dequeue(self):
-      """Dequeues the next path from the forward queue"""
-      return self.queue.pop(0) if self.queue else None
+class NavigationQueue:
+  """Handles 'FORWARD' navigation using queue (FIFO)"""
+  def __init__(self):
+    self.queue = []
+    
+  def enqueue(self, path):
+    """Enqueues the current path to the forward queue"""
+    self.queue.append(path)
+    
+  def dequeue(self):
+    """Dequeues the next path from the forward queue"""
+    return self.queue.pop(0) if self.queue else None
