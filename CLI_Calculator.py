@@ -1,3 +1,8 @@
+"""
+# version 1
+
+when ran, this file will run version 2 -> scroll down
+
 class BasicCalculator:
     def __init__(self):
         self.operations = ['add', 'sub', 'div', 'multi']
@@ -49,13 +54,15 @@ class BasicCalculator:
             numbers = input("Give 2 no.'s to divide: ")
             try:
                 (x, y) = map(float, numbers.split(','))
+                if x == 0 or y == 0:
+                    raise ValueError("Can't accept 0 as a value")
                 result = x / y
                 print(f"The value of divided no.'s is: {result}")
             except ValueError:
                 print("Invalid input. Please enter two numbers separated by a comma.")
 
 calculator = BasicCalculator()
-
+"""
 
 # Version 2
 class BasicCalculator:
