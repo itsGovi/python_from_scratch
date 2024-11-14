@@ -67,18 +67,21 @@ calculator = BasicCalculator()
 # Version 2
 class BasicCalculator:
     def __init__(self):
-        while True:
-            self.operation_called = input("What calculation do you wanna perform: ")
-            if self.operation_called == 'add':
-                self.addition()
-            elif self.operation_called == 'sub':
-                self.subtract()
-            elif self.operation_called == 'multiply':
-                self.multiply()
-            elif self.operation_called == 'div':
-                self.division()
-            elif self.operation_called == 'quit'.lower() or  self.operation_called == 'exit'.lower():
-                break
+        try:
+            while True:
+                self.operation_called = input("What calculation do you wanna perform: ")
+                if self.operation_called == 'add':
+                    self.addition()
+                elif self.operation_called == 'sub':
+                    self.subtract()
+                elif self.operation_called == 'multiply':
+                    self.multiply()
+                elif self.operation_called == 'div':
+                    self.division()
+                elif self.operation_called in ['exit', 'quit']:
+                    break
+        except KeyboardInterrupt:
+            print("\nProgram interrupted. Exiting...")
 
     def addition(self):
         if self.operation_called == 'add':
@@ -87,8 +90,9 @@ class BasicCalculator:
                 (x, y) = map(float, numbers.split(','))
                 result = x + y
                 print(f"The value of adding {x} and {y} is: {result}")
-            except ValueError:
-                print("The values need to be a number!")
+            except ValueError as e:
+                print(e)
+
     def subtract(self):
         if self.operation_called == 'sub':
             try:
@@ -96,8 +100,9 @@ class BasicCalculator:
                 (x, y) = map(float, numbers.split(','))
                 result = x - y
                 print(f"The value of subtracting {x} and {y} is: {result}")
-            except ValueError:
-                print("The values need to be a number!")
+            except ValueError as e:
+                print(e)
+
     
     def multiply(self):
         if self.operation_called == 'multiply':
@@ -106,18 +111,21 @@ class BasicCalculator:
                 (x, y) = map(float, numbers.split(','))
                 result = x * y
                 print(f"The value of multiplying {x} and {y} is: {result}")
-            except ValueError:
-                print("The values need to be a number!")
+            except ValueError as e:
+                print(e)
+
     
     def division(self):
         if self.operation_called == 'div':
             try:
                 numbers = input("Give 2 no's to divide: ")
                 (x, y) = map(float, numbers.split(','))
+                if y == 0:
+                    raise ValueError("The denominator can't be zero, but the numerator can!")
                 result = x / y
                 print(f"The value of dividing {x} and {y} is: {result}")
-            except ValueError:
-                print("The values need to be a number!")
+            except ValueError as e:
+                print(e)
 
 
 calculator = BasicCalculator()
