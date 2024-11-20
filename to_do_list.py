@@ -34,6 +34,9 @@ class ToDoList:
                 'description': task_description,
                 'completed': False
             }
+            order_key = [self.sorted_tasks]
+            reorder_key = len(self.tasks) + 1 if self.tasks else "1"
+            
         except ValueError as e:
             print(e)
 
@@ -41,8 +44,8 @@ class ToDoList:
         try:
             if not self.tasks:
                 raise ValueError ("The file is empty!")
-            sorted_tasks = {key: self.tasks[key] for key in sorted(self.tasks, key=lambda x: int(x))}
-            for key, task in sorted_tasks.item():
+            self.sorted_tasks = {key: self.tasks[key] for key in sorted(self.tasks, key=lambda x: int(x))}
+            for key, task in self.sorted_tasks.item():
                 print(task)
         except ValueError as e:
             print(e)
