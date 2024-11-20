@@ -25,11 +25,24 @@ class ToDoList:
             else:
                 print("Invalid input, please try again")
 
+    def create_task(self):
+        try:
+            task_title = input("What's the name of the task? ")
+            task_description = input("What's the task about? ")
+            new_task = {
+                'title': task_title,
+                'description': task_description,
+                'completed': False
+            }
+        except ValueError as e:
+            print(e)
+
     def view_tasks(self):
         try:
             if not self.tasks:
                 raise ValueError ("The file is empty!")
-            for task in self.tasks:
+            sorted_tasks = {key: self.tasks[key] for key in sorted(self.tasks, key=lambda x: int(x))}
+            for key, task in sorted_tasks.item():
                 print(task)
         except ValueError as e:
             print(e)
