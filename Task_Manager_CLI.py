@@ -24,14 +24,13 @@ class ToDoList:
     def run(self):
         while True:
             ask_input = input("What do you want to do? \n 1. Create new task \n 2. View Current task(s) \n 3.  Delete a task \n")
-            if ask_input in ['1', '2', '3', 'quit', 'exit']:
-                if ask_input == '1':
-                    self.create_task()
-                if ask_input == '2':
-                    self.view_task()
-                if ask_input == '3':
-                    self.delete_task()
-            elif self.ask_input in ['quit', 'exit']:
+            if ask_input == '1':
+                self.create_task()
+            if ask_input == '2':
+                self.view_task()
+            if ask_input == '3':
+                self.delete_task()
+            elif ask_input in ['quit', 'exit']:
                 print("Exiting application...")
                 break
             else:
