@@ -1,26 +1,38 @@
 import json
+import os
 
 class ToDoList:
     def __init__(self):
+        self.tasks = {}
+        self.load_tasks()
+        
+    def load_tasks(self):
         try:
-            with open('tasks.json', 'r') as file:
-                self.tasks = json.load(file)
-        except FileNotFoundError as e:
+            if os.path.exists('tasks.json'):
+                with open('tasks.json', 'r') as file:
+                    self.tasks = json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print(f"Error loading tasks: {e}")
             self.tasks = {}
-            print(e)
-        except json.JSONDecodeError as e:
-            self.tasks = {}
-            print(e)
+    def save_tasks(self):
+        try:
+            with open('tasks.json', 'w') as file:
+                json.dump(self.tasks, file, indent=4)  #`indent=4` makes the JSON readable
+        except IOError as e:
+            print(f"Error saving tasks: {e}")
+
+    def run(self):
         while True:
-            self.ask_input = input("What do you want to do? \n 1. Create new task \n 2. View Current task(s) \n 3.  Delete a task")
-            if self.ask_input in ['1', '2', '3', 'quit', 'exit']:
-                if self.ask_input == '1':
-                    self.view_tasks()
-                if self.ask_input == '2':
+            ask_input = input("What do you want to do? \n 1. Create new task \n 2. View Current task(s) \n 3.  Delete a task \n")
+            if ask_input in ['1', '2', '3', 'quit', 'exit']:
+                if ask_input == '1':
                     self.create_task()
-                if self.ask_input == '3':
+                if ask_input == '2':
+                    self.view_task()
+                if ask_input == '3':
                     self.delete_task()
             elif self.ask_input in ['quit', 'exit']:
+                print("Exiting application...")
                 break
             else:
                 print("Invalid input, please try again")
@@ -50,23 +62,14 @@ class ToDoList:
         except IOError as e:
             print(e)
 
-    def save_tasks(self):
-        try:
-            with open('tasks.json', 'w') as file:
-                json.dump(self.tasks, file, indent=4)  #`indent=4` makes the JSON readable
-        except IOError as e:
-            print(f"Error saving tasks: {e}")
-
-    def view_tasks(self):
-        try:
-            if not self.tasks:
-                print("No Task available to view.")
-                return
-            for key in sorted(self.tasks, keys=lambda x: int(x)):
-                task = self.tasks[key]
-                print(f"Task {key}: {task['title']} - {task['description']}")
-        except ValueError as e:
-            print(e)
+    def view_task(self):
+        if not self.tasks:
+            print("No tasks avialable to view.")
+            return
+        
+        for key in sorted(self.tasks, key=int):
+            task = self.tasks[key]
+            print(f"Task {key}: {task['title']} - {task['description']}")
             
     def delete_task(self):
         try:
@@ -111,3 +114,7 @@ class ToDoList:
             return
         reordered = {str(index): self.tasks[key] for index, key in enumerate(sorted(self.tasks.keys(), key=lambda x: int(x)), start=1)}
         self.tasks = reordered
+
+if __name__ == "__main__":
+    todo = ToDoList()
+    todo.run()
