@@ -60,18 +60,54 @@ class ToDoList:
     def view_tasks(self):
         try:
             if not self.tasks:
-                raise ValueError ("The file is empty!")
-            self.sorted_tasks = {key: self.tasks[key] for key in sorted(self.tasks, key=lambda x: int(x))}
-            for key, task in self.sorted_tasks.items():
-                print(task)
+                print("No Task available to view.")
+                return
+            for key in sorted(self.tasks, keys=lambda x: int(x)):
+                task = self.tasks[key]
+                print(f"Task {key}: {task['title']} - {task['description']}")
         except ValueError as e:
             print(e)
             
     def delete_task(self):
-        ...
+        try:
+            if not self.tasks:
+                print("No tasks available to delete.")
+                return
+            
+            print("Tasks Available: ")
+            for key, task in self.tasks.items():
+                print(f"Task {key}: {task['title']}")
+            delete_task = input("What task do you wanna delete, please enter task no.: ")
+            while not delete_task.isdigit() or delete_task not in self.tasks:
+                print("Please enter a valid task number.")
+                delete_task = input("What task do you want to delete? ")
+
+
+            print(f"Task Details:\n Title: {self.tasks[delete_task]['title']}\n Descritption: {self.tasks[delete_task]['description']}")
+            max_no_invalid_inputs = 5
+            invalid_input_count = 0
+            confirm_delete = input("Do you want to delete this task(y/n): ").lower()
+            while confirm_delete not in ['y', 'n'] and invalid_input_count < max_no_invalid_inputs:
+                confirm_delete = input("Please enter 'y' or 'n': ").lower()
+                if confirm_delete not in ['y', 'n']:
+                    print(f"Invalid input. Please enter 'y' or 'n'. You have {max_no_invalid_inputs} left before exit.")    
+                    invalid_input_count += 1
+                if invalid_input_count == max_no_invalid_inputs:
+                    print("Too many invalid input errors. Exiting...")
+                    return            
+            if confirm_delete == 'y':
+                del self.tasks[delete_task]
+                if self.tasks:
+                    self.reorder_tasks()
+                self.save_tasks()
+                print("Task deleted successfully!")
+            elif confirm_delete == 'n':
+                print("Deletion Cancelled.")             
+        except Exception as e:
+            print(f"An error occured: {e}")
     
     def reorder_tasks(self):
-        reordered = {}
-        for index,key in enumerate(sorted(self.tasks, key=lambda x: int(x)), start=1):
-            reordered[str(index)] = self.tasks[key]
-            self.tasks = reordered
+        if not self.tasks:
+            return
+        reordered = {str(index): self.tasks[key] for index, key in enumerate(sorted(self.tasks.keys(), key=lambda x: int(x)), start=1)}
+        self.tasks = reordered
