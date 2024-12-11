@@ -1,1 +1,7 @@
-{}
+{
+    "1": {
+        "title": "Password Manager",
+        "description": "To understand how encryption works build a password manager in py",
+        "completed": false
+    }
+}
